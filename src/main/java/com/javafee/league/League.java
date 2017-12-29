@@ -112,7 +112,7 @@ public class League extends JFrame {
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 		
-		lblHelloGit = new JLabel("Czym byłoby zycie bez GIT'a?");
+		lblHelloGit = new JLabel("Czym byłoby życie bez GIT'a?");
 		GridBagConstraints gbc_lblHelloGit = new GridBagConstraints();
 		gbc_lblHelloGit.gridwidth = 3;
 		gbc_lblHelloGit.insets = new Insets(0, 0, 5, 5);
