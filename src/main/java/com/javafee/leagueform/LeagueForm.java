@@ -34,6 +34,7 @@ public class LeagueForm extends JFrame {
 	 * Create the frame.
 	 */
 	public LeagueForm() {
+		Utils.setLookAndFeel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 524, 381);
 		contentPane = new JPanel();
