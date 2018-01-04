@@ -1,30 +1,16 @@
 package com.javafee.leagueform;
 
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.List;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-import com.javafee.dao.Team;
 
 public class LeagueForm extends JFrame {
 	private static final long serialVersionUID = 6463445752669790332L;
@@ -39,64 +25,10 @@ public class LeagueForm extends JFrame {
 	private JLabel lblTeam_4;
 	private JEditorPane editorPane;
 	private JButton btnGenerateCalendar;
-	ArrayList<Team> teams = new ArrayList<Team>();
-	String text1 = null;
 	private JButton btnSaveTeams;
+	private JButton btnShowTeams;
 	private JLabel lblHelloGit;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LeagueForm frame = new LeagueForm();
-					frame.addWindowListener(new WindowListener() {
-
-						public void windowOpened(WindowEvent e) {
-							List downloadedTeams = new List();
-							// Pobranie rekordów z BD w postaci Listy
-							// for(team)
-							// downloadedTeams.add(team);
-							// Jeśli lista niepusta przeiterować i dodać drużyny do
-							// nowo dodanego TextFielda.
-							// if (!teams.isEmpty()) {
-							// for (String team : downloadedTeams)
-							//
-							// editorPane.setText(resultCalendar.toString());
-							// } else {
-							// JOptionPane.showMessageDialog(null, "Brak drużyn w bazie danych",
-							// "Ostrzeżenie",
-							// JOptionPane.WARNING_MESSAGE);
-							// }
-						}
-
-						public void windowIconified(WindowEvent e) {
-						}
-
-						public void windowDeiconified(WindowEvent e) {
-						}
-
-						public void windowDeactivated(WindowEvent e) {
-						}
-
-						public void windowClosing(WindowEvent e) {
-						}
-
-						public void windowClosed(WindowEvent e) {
-						}
-
-						public void windowActivated(WindowEvent e) {
-						}
-					});
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
@@ -114,7 +46,7 @@ public class LeagueForm extends JFrame {
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 		
-		lblHelloGit = new JLabel("Czym byłoby życie bez GIT'a?");
+		lblHelloGit = new JLabel("Czym byłoby zycie bez GIT'a?");
 		GridBagConstraints gbc_lblHelloGit = new GridBagConstraints();
 		gbc_lblHelloGit.gridwidth = 3;
 		gbc_lblHelloGit.insets = new Insets(0, 0, 5, 5);
@@ -230,24 +162,14 @@ public class LeagueForm extends JFrame {
 		contentPane.add(textField_5, gbc_textField_5);
 		textField_5.setColumns(10);
 
-		JButton btnNewButton = new JButton("Show the teams");
+		btnShowTeams = new JButton("Show the teams");
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 7;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				onClickBtnNewButton();
-			}
-		});
+		contentPane.add(btnShowTeams, gbc_btnNewButton);
 
 		btnSaveTeams = new JButton("Save teams");
-		btnSaveTeams.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				onClickBtnSave();
-			}
-		});
 		GridBagConstraints gbc_btnSaveTeams = new GridBagConstraints();
 		gbc_btnSaveTeams.insets = new Insets(0, 0, 5, 5);
 		gbc_btnSaveTeams.gridx = 2;
@@ -260,14 +182,6 @@ public class LeagueForm extends JFrame {
 		gbc_btnGenerateCalendar.gridx = 3;
 		gbc_btnGenerateCalendar.gridy = 7;
 		contentPane.add(btnGenerateCalendar, gbc_btnGenerateCalendar);
-		btnGenerateCalendar.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				onClickBtnGenerateCalendar();
-
-			}
-
-		});
 
 		editorPane = new JEditorPane();
 		GridBagConstraints gbc_editorPane = new GridBagConstraints();
@@ -278,94 +192,45 @@ public class LeagueForm extends JFrame {
 		gbc_editorPane.gridy = 8;
 		contentPane.add(editorPane, gbc_editorPane);
 	}
-
-	private void onClickBtnNewButton() {
-		String text2 = null;
-		if (textField.getText().isEmpty()) {
-			text2 = "Nie wprowadzono pierwszej drużyny";
-		} else if (textField_1.getText().isEmpty()) {
-			text2 = "Nie wprowadzono drugiej drużyny";
-		} else if (textField_2.getText().isEmpty()) {
-			text2 = "Nie wprowadzono trzciej drużyny";
-		} else if (textField_3.getText().isEmpty()) {
-			text2 = "Nie wprowadzono czwartej drużyny";
-		} else if (textField_4.getText().isEmpty()) {
-			text2 = "Nie wprowadzono piątej drużyny";
-		} else if (textField_5.getText().isEmpty()) {
-			text2 = "Nie wprowadzono ostatniej drużyny";
-		} else {
-			text2 = textField.getText() + ", " + textField_1.getText() + ", " + textField_2.getText() + ", "
-					+ textField_3.getText() + ", " + textField_4.getText() + ", " + textField_5.getText();
-		}
-		editorPane.setText(text2);
+	
+	public JButton getBtnSaveTeams() {
+		return btnSaveTeams;
+	}
+	
+	public JButton getBtnGenerateCalendar() {
+		return btnGenerateCalendar;
+	}
+	
+	public JButton getBtnShowTeams() {
+		return btnShowTeams;
 	}
 
-	private void onClickBtnGenerateCalendar() {
-		// pobranie drużyn i uzupełnienie listy teams
-		onClickBtnCreateTeamObjects();
-		if (text1 != null) {
-			editorPane.setText(text1);
-		} else if (!teams.isEmpty()) {
-			ArrayList<String> findedTeamPairs = findPairs(teams);
-			StringBuilder resultCalendar = new StringBuilder();
-			for (String pair : findedTeamPairs)
-				resultCalendar.append(pair + "\n");
-			editorPane.setText(resultCalendar.toString());
-		} else {
-			JOptionPane.showMessageDialog(null, "Nie wprowadzono drużyn", "Ostrzeżenie", JOptionPane.WARNING_MESSAGE);
-		}
+	public JTextField getTextField() {
+		return textField;
 	}
 
-	public void onClickBtnCreateTeamObjects() {
-		createTeam(textField.getText());
-		createTeam(textField_1.getText());
-		createTeam(textField_2.getText());
-		createTeam(textField_3.getText());
-		createTeam(textField_4.getText());
-		createTeam(textField_5.getText());
+	public JTextField getTextField_1() {
+		return textField_1;
 	}
 
-	private void onClickBtnSave() {
-		if (!teams.isEmpty()) {
-			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-			Session session = sessionFactory.openSession();
-			session.beginTransaction();
-			for (Team team : teams) {
-				session.save(team);
-
-				System.out.println("Zapisano drużynę " + team.getName() + " do bazy!");
-			}
-			session.getTransaction().commit();
-			session.close();
-			sessionFactory.close();
-		}
+	public JTextField getTextField_2() {
+		return textField_2;
 	}
 
-	private Team createTeam(String teamName) {
-		Team team = new Team();
-		team.setName(teamName);
-		if (!"".equals(teamName)) {
-			teams.add(team);
-		} else
-			text1 = "Nie wprowadzono jednej z drużyn";
-		return team;
+	public JTextField getTextField_3() {
+		return textField_3;
 	}
 
-	public ArrayList<String> findPairs(ArrayList<Team> teams) {
-		ArrayList<String> result = new ArrayList<String>();
-		// algorytm
-		for (Team team : teams) {
+	public JTextField getTextField_4() {
+		return textField_4;
+	}
 
-			for (Team foot_team : teams) {
-				if (foot_team != team) {
-					String pair = new String(foot_team.getName() + " vs " + team.getName());
-					// dodanie par drużyn do listy wynikowej
-					result.add(pair + "\n");
-				}
+	public JTextField getTextField_5() {
+		return textField_5;
+	}
 
-			}
-		}
-		return result;
+	public JEditorPane getEditorPane() {
+		return editorPane;
 	}
 
 	// dr1 vs. dr2
