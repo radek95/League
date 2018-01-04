@@ -1,4 +1,4 @@
-package com.javafee.league;
+package com.javafee.leagueform;
 
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
@@ -24,7 +24,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class League extends JFrame {
+import com.javafee.dao.Team;
+
+public class LeagueForm extends JFrame {
 	private static final long serialVersionUID = 6463445752669790332L;
 	private JPanel contentPane;
 	private JTextField textField;
@@ -49,7 +51,7 @@ public class League extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					League frame = new League();
+					LeagueForm frame = new LeagueForm();
 					frame.addWindowListener(new WindowListener() {
 
 						public void windowOpened(WindowEvent e) {
@@ -99,7 +101,7 @@ public class League extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public League() {
+	public LeagueForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 524, 381);
 		contentPane = new JPanel();

@@ -1,4 +1,4 @@
-package com.javafee.league;
+package com.javafee.dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
