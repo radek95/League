@@ -54,6 +54,25 @@ public class LeagueForm extends JFrame {
 		gbc_lblHelloGit.gridx = 1;
 		gbc_lblHelloGit.gridy = 0;
 		contentPane.add(lblHelloGit, gbc_lblHelloGit);
+		
+		lblLeague = new JLabel("League");
+		GridBagConstraints gbc_lblLeague = new GridBagConstraints();
+		gbc_lblLeague.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLeague.anchor = GridBagConstraints.EAST;
+		gbc_lblLeague.gridx = 0;
+		gbc_lblLeague.gridy = 1;
+		contentPane.add(lblLeague, gbc_lblLeague);
+		
+		JComboBoxLeage = new JComboBox();
+		JComboBoxLeage.setModel(new DefaultComboBoxModel(new String[] {"Bundesliga", "Champions League", "Ekstraklasa", "European League", "Ligue1", "Primiera Division", "Premier League", "Serie A"}));
+		GridBagConstraints gbc_JComboBoxLeage = new GridBagConstraints();
+		gbc_JComboBoxLeage.gridwidth = 3;
+		gbc_JComboBoxLeage.insets = new Insets(0, 0, 5, 0);
+		gbc_JComboBoxLeage.fill = GridBagConstraints.HORIZONTAL;
+		gbc_JComboBoxLeage.gridx = 1;
+		gbc_JComboBoxLeage.gridy = 1;
+		contentPane.add(JComboBoxLeage, gbc_JComboBoxLeage);
+
 
 		JLabel lbTeam1 = new JLabel("Team 1");
 		GridBagConstraints gbc_lbTeam1 = new GridBagConstraints();
@@ -164,7 +183,7 @@ public class LeagueForm extends JFrame {
 		textField_5.setColumns(10);
 
 		btnShowTeams = new JButton("Show the teams");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		GridBagConstraints gbc_btnShowTeams = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 7;
@@ -205,6 +224,10 @@ public class LeagueForm extends JFrame {
 	public JButton getBtnShowTeams() {
 		return btnShowTeams;
 	}
+	
+	public JComboBox getJComboBoxLeage() {
+		return JComboBoxLeage;
+	}
 
 	public JTextField getTextField() {
 		return textField;
@@ -234,7 +257,4 @@ public class LeagueForm extends JFrame {
 		return editorPane;
 	}
 
-	// dr1 vs. dr2
-	// dr1 vs. dr3
-	// dr2 vs. dr3
 }
