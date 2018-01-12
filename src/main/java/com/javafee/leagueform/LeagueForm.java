@@ -14,6 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.javafee.controller.model.TeamTableModel;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
 public class LeagueForm extends JFrame {
 	private static final long serialVersionUID = 6463445752669790332L;
 	private JPanel contentPane;
@@ -31,6 +36,9 @@ public class LeagueForm extends JFrame {
 	private JButton btnShowTeams;
 	private JLabel lblHelloGit;
 	private JComboBox comboBoxTeam;
+	private JButton btnTest;
+	private JScrollPane scrollPane;
+	private JTable table;
 	
 
 	/**
@@ -39,21 +47,21 @@ public class LeagueForm extends JFrame {
 	public LeagueForm() {
 		Utils.setLookAndFeel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 524, 381);
+		setBounds(100, 100, 950, 381);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 58, 148, 164, 139, 0 };
+		gbl_contentPane.columnWidths = new int[] { 58, 148, 164, 196, 405, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 		
 		lblHelloGit = new JLabel("Czym byłoby zycie bez GIT'a?");
 		GridBagConstraints gbc_lblHelloGit = new GridBagConstraints();
 		gbc_lblHelloGit.gridwidth = 3;
-		gbc_lblHelloGit.insets = new Insets(0, 0, 5, 0);
+		gbc_lblHelloGit.insets = new Insets(0, 0, 5, 5);
 		gbc_lblHelloGit.gridx = 1;
 		gbc_lblHelloGit.gridy = 0;
 		contentPane.add(lblHelloGit, gbc_lblHelloGit);
@@ -62,12 +70,24 @@ public class LeagueForm extends JFrame {
 		comboBoxTeam.setModel(new DefaultComboBoxModel(new String[] {"Bundesliga", "Champions League", "Ekstraklasa", "European League", "Ligue1", "Primiera Division", "Premier League", "Serie A"}));
 		GridBagConstraints gbc_JComboBoxLeage = new GridBagConstraints();
 		gbc_JComboBoxLeage.gridwidth = 3;
-		gbc_JComboBoxLeage.insets = new Insets(0, 0, 5, 0);
+		gbc_JComboBoxLeage.insets = new Insets(0, 0, 5, 5);
 		gbc_JComboBoxLeage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_JComboBoxLeage.gridx = 1;
 		gbc_JComboBoxLeage.gridy = 1;
 		contentPane.add(comboBoxTeam, gbc_JComboBoxLeage);
-
+		
+		scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridheight = 7;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 4;
+		gbc_scrollPane.gridy = 1;
+		contentPane.add(scrollPane, gbc_scrollPane);
+		
+		table = new JTable();
+		table.setModel(new TeamTableModel());
+		scrollPane.setViewportView(table);
 
 		JLabel lbTeam1 = new JLabel("Team 1");
 		GridBagConstraints gbc_lbTeam1 = new GridBagConstraints();
@@ -80,7 +100,7 @@ public class LeagueForm extends JFrame {
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.gridwidth = 3;
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 2;
@@ -98,7 +118,7 @@ public class LeagueForm extends JFrame {
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.gridwidth = 3;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 1;
 		gbc_textField_1.gridy = 3;
@@ -116,7 +136,7 @@ public class LeagueForm extends JFrame {
 		textField_2 = new JTextField();
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.gridwidth = 3;
-		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_2.gridx = 1;
 		gbc_textField_2.gridy = 4;
@@ -134,7 +154,7 @@ public class LeagueForm extends JFrame {
 		textField_3 = new JTextField();
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.gridwidth = 3;
-		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_3.gridx = 1;
 		gbc_textField_3.gridy = 5;
@@ -152,7 +172,7 @@ public class LeagueForm extends JFrame {
 		textField_4 = new JTextField();
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 		gbc_textField_4.gridwidth = 3;
-		gbc_textField_4.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_4.gridx = 1;
 		gbc_textField_4.gridy = 6;
@@ -170,7 +190,7 @@ public class LeagueForm extends JFrame {
 		textField_5 = new JTextField();
 		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
 		gbc_textField_5.gridwidth = 3;
-		gbc_textField_5.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_5.gridx = 1;
 		gbc_textField_5.gridy = 7;
@@ -193,13 +213,21 @@ public class LeagueForm extends JFrame {
 
 		btnGenerateCalendar = new JButton("Show the calendar");
 		GridBagConstraints gbc_btnGenerateCalendar = new GridBagConstraints();
-		gbc_btnGenerateCalendar.insets = new Insets(0, 0, 5, 0);
+		gbc_btnGenerateCalendar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGenerateCalendar.gridx = 3;
 		gbc_btnGenerateCalendar.gridy = 8;
 		contentPane.add(btnGenerateCalendar, gbc_btnGenerateCalendar);
+		
+		btnTest = new JButton("Initialize hibernate");
+		GridBagConstraints gbc_btnTest = new GridBagConstraints();
+		gbc_btnTest.insets = new Insets(0, 0, 5, 0);
+		gbc_btnTest.gridx = 4;
+		gbc_btnTest.gridy = 8;
+		contentPane.add(btnTest, gbc_btnTest);
 
 		editorPane = new JEditorPane();
 		GridBagConstraints gbc_editorPane = new GridBagConstraints();
+		gbc_editorPane.insets = new Insets(0, 0, 0, 5);
 		gbc_editorPane.gridheight = 2;
 		gbc_editorPane.gridwidth = 4;
 		gbc_editorPane.fill = GridBagConstraints.BOTH;
@@ -256,4 +284,7 @@ public class LeagueForm extends JFrame {
 		return editorPane;
 	}
 
+	public JButton getBtnTest() {
+		return btnTest;
+	}
 }

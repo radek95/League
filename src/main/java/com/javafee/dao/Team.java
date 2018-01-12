@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Team")
+@Table(name = "team")
 public class Team {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +33,6 @@ public class Team {
 
 	public void setName(String name) {
 		this.name = name;
-		System.out.println("Ustawiłem nazwę drużyny " + name);
 	}
 
 	public String getNationality() {

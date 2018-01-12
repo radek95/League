@@ -32,11 +32,21 @@ public class Action {
 					leagueForm.getBtnSaveTeams().addActionListener(e -> onClickBtnSaveTeams());
 					leagueForm.getBtnGenerateCalendar().addActionListener(e -> onClickBtnGenerateCalendar());
 					leagueForm.getBtnShowTeams().addActionListener(e -> onClickBtnShowTeams());
+					leagueForm.getBtnTest().addActionListener(e -> onClickBtnTest());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+	}
+	
+	private void onClickBtnTest() {
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		this.teams = (ArrayList<Team>)session.createCriteria(Team.class).list();
+		session.close();
+		sessionFactory.close();
 	}
 
 	private void onClickBtnSaveTeams() {
