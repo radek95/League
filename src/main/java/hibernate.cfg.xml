@@ -32,6 +32,7 @@
 		<property name="hibernate.jdbc.lob.non_contextual_creation">true</property>
 
 		<!-- Names the annotated entity class -->
-		<mapping class="com.javafee.league.Team" />
+		<mapping class="com.javafee.dao.Team" />
+		<mapping class="com.javafee.dao.Game" />
 	</session-factory>
 </hibernate-configuration>

@@ -14,10 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.javafee.controller.model.GameTableModel;
 import com.javafee.controller.model.TeamTableModel;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LeagueForm extends JFrame {
 	private static final long serialVersionUID = 6463445752669790332L;
@@ -37,8 +40,10 @@ public class LeagueForm extends JFrame {
 	private JLabel lblHelloGit;
 	private JComboBox comboBoxTeam;
 	private JButton btnTest;
-	private JScrollPane scrollPane;
-	private JTable table;
+	private JScrollPane scrollPane_tableLeague;
+	private JTable tableLeague;
+	private JScrollPane scrollPane_tableGames;
+	private JTable tableGame;
 	
 
 	/**
@@ -47,7 +52,7 @@ public class LeagueForm extends JFrame {
 	public LeagueForm() {
 		Utils.setLookAndFeel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 381);
+		setBounds(100, 100, 1014, 624);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,18 +81,18 @@ public class LeagueForm extends JFrame {
 		gbc_JComboBoxLeage.gridy = 1;
 		contentPane.add(comboBoxTeam, gbc_JComboBoxLeage);
 		
-		scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridheight = 7;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 4;
-		gbc_scrollPane.gridy = 1;
-		contentPane.add(scrollPane, gbc_scrollPane);
+		scrollPane_tableLeague = new JScrollPane();
+		GridBagConstraints gbc_scrollPane_tableLeague = new GridBagConstraints();
+		gbc_scrollPane_tableLeague.gridheight = 7;
+		gbc_scrollPane_tableLeague.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane_tableLeague.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_tableLeague.gridx = 4;
+		gbc_scrollPane_tableLeague.gridy = 1;
+		contentPane.add(scrollPane_tableLeague, gbc_scrollPane_tableLeague);
 		
-		table = new JTable();
-		table.setModel(new TeamTableModel());
-		scrollPane.setViewportView(table);
+		tableLeague = new JTable();
+		tableLeague.setModel(new TeamTableModel());
+		scrollPane_tableLeague.setViewportView(tableLeague);
 
 		JLabel lbTeam1 = new JLabel("Team 1");
 		GridBagConstraints gbc_lbTeam1 = new GridBagConstraints();
@@ -212,6 +217,10 @@ public class LeagueForm extends JFrame {
 		contentPane.add(btnSaveTeams, gbc_btnSaveTeams);
 
 		btnGenerateCalendar = new JButton("Show the calendar");
+		btnGenerateCalendar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		GridBagConstraints gbc_btnGenerateCalendar = new GridBagConstraints();
 		gbc_btnGenerateCalendar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGenerateCalendar.gridx = 3;
@@ -234,6 +243,19 @@ public class LeagueForm extends JFrame {
 		gbc_editorPane.gridx = 0;
 		gbc_editorPane.gridy = 9;
 		contentPane.add(editorPane, gbc_editorPane);
+		
+		scrollPane_tableGames = new JScrollPane();
+		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
+		gbc_scrollPane_1.gridheight = 2;
+		gbc_scrollPane_1.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_1.gridx = 4;
+		gbc_scrollPane_1.gridy = 9;
+		contentPane.add(scrollPane_tableGames, gbc_scrollPane_1);
+		
+		tableGame = new JTable();
+		tableGame.setModel(new GameTableModel());
+		scrollPane_tableGames.setViewportView(tableGame);
 	}
 	
 	public JComboBox getjComboBoxLeage() {
